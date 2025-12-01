@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thiệp mời cưới • Nam & Dung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Thiệp cưới online Long & Nga" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #c79a65;
+      --primary-dark: #a07846;
+      --bg: #fffaf5;
+      --text: #3b3b3b;
+      --accent: #f7d9c4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      /* Ảnh nền hero - đang dùng JNW05977.jpg, bạn có thể đổi sang ảnh khác trong folder images */
+      background: url("images/JNW05771.jpg") center/cover no-repeat fixed;
+      transform: scale(1.1);
+      filter: brightness(0.6);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.25), rgba(0,0,0,0.6));
+      z-index: -1;
+    }
+
+    .hero-inner {
+      padding: 80px 20px 40px;
+      max-width: 700px;
+      animation: fadeInUp 1.4s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .hero-and {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 5px;
+    }
+
+    .hero-date {
+      margin-top: 15px;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: rgba(255,255,255,0.8);
+      margin: 18px auto;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .scroll-down span {
+      display: block;
+      margin-top: 5px;
+      animation: bounce 1.5s infinite;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 250, 245, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+
+    .navbar-brand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .navbar-links a {
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .navbar-links a:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 60px 16px;
+    }
+
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 30px;
+    }
+
+    .section-description {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      text-align: center;
+      color: #666;
+    }
+
+    /* COUPLE */
+    .couple {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+
+    .person-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .person-card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(199,154,101,0.4), transparent 60%);
+      opacity: 0.4;
+    }
+
+    .person-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .person-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .person-role {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    .person-info {
+      font-size: 0.95rem;
+    }
+
+    .family-info {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* TIMELINE & COUNTDOWN */
+    .timeline {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .card-title {
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+
+    .timeline-list {
+      list-style: none;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-time {
+      font-weight: 700;
+      color: var(--primary-dark);
+      min-width: 70px;
+    }
+
+    .timeline-content-title {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .timeline-content-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .countdown {
+      text-align: center;
+    }
+
+    .countdown-date {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .countdown-numbers {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .countdown-box {
+      flex: 1;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .countdown-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .countdown-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #777;
+    }
+
+    /* QR & ĐỊA ĐIỂM */
+    .qr-wrapper {
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .qr-image {
+      border-radius: 16px;
+      background: var(--bg);
+      padding: 10px;
+    }
+
+    .location-info-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .location-info {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* MUSIC */
+    .music-card-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform 0.1s, box-shadow 0.1s, background 0.2s, color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary-dark);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* LỜI CHÚC & RSVP */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      background: #fff;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(199,154,101,0.18);
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .list {
+      margin-top: 14px;
+      max-height: 220px;
+      overflow-y: auto;
+      border-top: 1px dashed #eee;
+      padding-top: 8px;
+      font-size: 0.9rem;
+    }
+
+    .list-item {
+      padding: 6px 0;
+      border-bottom: 1px dashed #f0f0f0;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .list-item-name {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #7b4e2b;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: 4px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 30px 16px 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-6px);
+      }
+      60% {
+        transform: translateY(-3px);
+      }
+    }
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ADVANCED SCROLL ANIMATIONS */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: var(--animate-from, translate3d(0, 40px, 0));
+      transition: opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1), transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+      transition-delay: var(--delay, 0s);
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    [data-animate="slide-left"] {
+      --animate-from: translate3d(-60px, 0, 0);
+    }
+
+    [data-animate="slide-right"] {
+      --animate-from: translate3d(60px, 0, 0);
+    }
+
+    [data-animate="zoom-in"] {
+      --animate-from: scale(0.9);
+    }
+
+    [data-animate="zoom-out"] {
+      --animate-from: scale(1.08);
+    }
+
+    [data-animate="flip-up"] {
+      --animate-from: rotateX(25deg) translate3d(0, 40px, 0);
+      transform-origin: top;
+    }
+
+    [data-animate="float"] {
+      --animate-from: translate3d(0, 60px, 0);
+    }
+
+    /* HEARTS FALLING */
+    .hearts-container {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 50;
+    }
+
+    .heart {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle at 30% 30%, #fff 0%, #ffd6e8 40%, #ff9ec4 70%, #ff6b9e 100%);
+      transform: rotate(45deg);
+      animation: fall linear forwards;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50%;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -50%;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner {
+        padding-top: 70px;
+      }
+
+      .hero-names {
+        font-size: 2.3rem;
+      }
+
+      .navbar-inner {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .couple,
+      .timeline,
+      .qr-wrapper,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .countdown-numbers {
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="hearts-container"></div>
+  <!-- BACKGROUND MUSIC (auto-play sau khi user tương tác) -->
+  <!-- Nhạc nền - đặt file trong thư mục music -->
+  <audio id="bg-music" loop>
+    <source src="music/bg-music2222.mp3" type="audio/mpeg" />
+    Trình duyệt của bạn không hỗ trợ audio.
+  </audio>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-and">Lễ Thành Hôn</div>
+      <div class="hero-names">Duy Long &amp; Đỗ Nga</div>
+      <div class="hero-divider"></div>
+      <p>Trân trọng kính mời quý khách đến dự lễ cưới chung vui cùng gia đình chúng tôi.</p>
+      <div class="hero-date">Thứ 7, 13 / 12 / 2025 • Tỉnh Ninh Bình</div>
+      <div style="margin-top: 24px;">
+        <button class="btn btn-primary" id="open-invitation">Mở thiệp</button>
+      </div>
+    </div>
+    <div class="scroll-down" onclick="document.querySelector('#couple').scrollIntoView({behavior: 'smooth'});">
+      Cuộn xuống
+      <span>▼</span>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-brand">Long &amp; Nga</div>
+      <div class="navbar-links">
+        <a href="#couple">Cô dâu &amp; Chú rể</a>
+        <a href="#timeline">Lịch trình</a>
+        <a href="#music">Âm nhạc</a>
+        <a href="#wishes">Lời chúc</a>
+        <a href="#rsvp">Xác nhận tham dự</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- COUPLE -->
+  <section id="couple" class="fade-section">
+    <div class="section-inner">
+      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Cô dâu &amp; Chú rể</h2>
+      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">TÌNH YÊU CỦA CHÚNG TÔI</div>
+      <p class="section-description animate-on-scroll" data-animate="float" style="--delay: 0.1s;">
+        Sau chặng đường dài đồng hành, chúng tôi quyết định về chung một nhà.
+        Rất mong nhận được lời chúc phúc và sự hiện diện của quý anh chị, bạn bè và người thân.
+      </p>
+      <div class="couple">
+        <div class="person-card animate-on-scroll" data-animate="slide-right">
+          <div class="person-photo">
+            <!-- Ảnh chú rể - tạm dùng JNW05968.jpg -->
+            <img src="images/JNW05739.jpg" alt="Chú rể" />
+          </div>
+          <div class="person-role">Chú rể</div>
+          <div class="person-name">Lê Duy Long</div>
+          <div class="family-info">
+            <strong>Con ông:</strong> Lê Duy Lành<br />
+            <strong>Con bà:</strong> Mai Thị Liên<br />
+            Ngụ tại Xã Cổ Đô, TP Hà Nội.
+          </div>
+        </div>
+
+        <div class="person-card animate-on-scroll" data-animate="slide-left">
+          <div class="person-photo">
+            <!-- Ảnh cô dâu - tạm dùng JNW05950.jpg -->
+            <img src="images/JNW05493.jpg" alt="Cô dâu" />
+          </div>
+          <div class="person-role">Cô dâu</div>
+          <div class="person-name">Đỗ Thị Nga</div>
+          <div class="family-info">
+            <strong>Con ông:</strong> Đỗ Văn Đông<br />
+            <strong>Con bà:</strong> Trần Thi Loan<br />
+            Ngụ tại Xã Cát Thành, Tỉnh Ninh Bình.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE & COUNTDOWN -->
+  <section id="timeline" class="fade-section" style="background: rgba(255,255,255,0.7);">
+    <div class="section-inner">
+      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Lịch trình ngày cưới</h2>
+      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">NGÀY VUI CỦA CHÚNG TÔI</div>
+      <div class="timeline">
+        <div class="card animate-on-scroll" data-animate="slide-right">
+          <div class="card-title">Lịch trình chi tiết</div>
+          <ul class="timeline-list">
+            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.05s;">
+              <div class="timeline-time">06:30</div>
+              <div>
+                <div class="timeline-content-title">Đón khách</div>
+                <div class="timeline-content-desc">Đón khách tại nhà gái, giao lưu và chụp hình lưu niệm.</div>
+              </div>
+            </li>
+            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.1s;">
+              <div class="timeline-time">07:00</div>
+              <div>
+                <div class="timeline-content-title">Lễ rước dâu</div>
+                <div class="timeline-content-desc">Nhà trai sang nhà gái, thực hiện nghi thức rước dâu.</div>
+              </div>
+            </li>
+            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.15s;">
+              <div class="timeline-time">11:00</div>
+              <div>
+                <div class="timeline-content-title">Nhập tiệc</div>
+                <div class="timeline-content-desc">Quý khách ổn định chỗ ngồi, bắt đầu bữa tiệc thân mật.</div>
+              </div>
+            </li>
+            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.2s;">
+              <div class="timeline-time">12:00</div>
+              <div>
+                <div class="timeline-content-title">Lễ thành hôn</div>
+                <div class="timeline-content-desc">Nghi lễ chính thức, ra mắt hai họ và bạn bè.</div>
+              </div>
+            </li>
+            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.25s;">
+              <div class="timeline-time">14:00</div>
+              <div>
+                <div class="timeline-content-title">Kết thúc tiệc</div>
+                <div class="timeline-content-desc">Gửi lời cảm ơn đến toàn thể quan khách.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card animate-on-scroll" data-animate="slide-left">
+          <div class="card-title">Đếm ngược đến ngày cưới</div>
+          <div class="countdown">
+            <div class="countdown-date" id="wedding-date-label">13 / 12 / 2025</div>
+            <div class="countdown-numbers" id="countdown">
+              <div class="countdown-box">
+                <div class="countdown-value" id="days">0</div>
+                <div class="countdown-label">Ngày</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-value" id="hours">0</div>
+                <div class="countdown-label">Giờ</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-value" id="minutes">0</div>
+                <div class="countdown-label">Phút</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-value" id="seconds">0</div>
+                <div class="countdown-label">Giây</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEDDING EVENTS -->
+  <section id="events" class="fade-section">
+    <div class="section-inner">
+      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Sự kiện cưới</h2>
+      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">CẢM ƠN VÌ NHỮNG LỜI CHÚC</div>
+      <p class="section-description animate-on-scroll" data-animate="float" style="--delay: 0.1s;">
+        Cảm ơn bạn rất nhiều vì đã gửi những lời chúc mừng tốt đẹp nhất đến đám cưới của chúng tôi!<br />
+        Dưới đây là các mốc thời gian quan trọng trong ngày trọng đại.
+      </p>
+      <div class="grid-2" style="gap: 20px;">
+        <div class="card animate-on-scroll" data-animate="zoom-in">
+          <div class="card-title">Lễ cưới nhà gái</div>
+          <p class="timeline-content-desc" style="margin-bottom: 8px;">
+            <strong>7:30 • 13/12/2025</strong>
+          </p>
+          <p class="timeline-content-desc">
+            Tư gia nhà gái &ndash; Thôn Bắc Đại 1, Xã Cát Thành, Tỉnh Ninh Bình.
+          </p>
+        </div>
+        <div class="card animate-on-scroll" data-animate="zoom-in" style="--delay: 0.05s;">
+          <div class="card-title">Tiệc cưới nhà gái</div>
+          <p class="timeline-content-desc" style="margin-bottom: 8px;">
+            <strong>08:30 • 13/12/2025</strong>
+          </p>
+          <p class="timeline-content-desc">
+            Tư gia nhà gái &ndash; Thôn Bắc Đại 1, Xã Cát Thành, Tỉnh Ninh Bình.
+          </p>
+        </div>
+        <div class="card animate-on-scroll" data-animate="zoom-in" style="--delay: 0.1s;">
+          <div class="card-title">Lễ cưới nhà trai</div>
+          <p class="timeline-content-desc" style="margin-bottom: 8px;">
+            <strong>12:00 • 13/12/2025</strong>
+          </p>
+          <p class="timeline-content-desc">
+            Tư gia nhà trai &ndash; Thôn Phương Châu, Xã Cổ Đô, TP Hà Nội.
+          </p>
+        </div>
+        <div class="card animate-on-scroll" data-animate="zoom-in" style="--delay: 0.15s;">
+          <div class="card-title">Tiệc cưới nhà trai</div>
+          <p class="timeline-content-desc" style="margin-bottom: 8px;">
+            <strong>12:30 • 13/12/2025</strong>
+          </p>
+          <p class="timeline-content-desc">
+            Tư gia nhà trai &ndash; Thôn Phương Châu, Xã Cổ Đô, TP Hà Nội.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MUSIC -->
+  <section id="music" class="fade-section" style="background: rgba(255,255,255,0.7);">
+    <div class="section-inner">
+      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Bản nhạc cưới</h2>
+      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">GIA ĐIỆU TÌNH YÊU</div>
+      <div class="card animate-on-scroll" data-animate="flip-up">
+        <p>
+          Một chút âm nhạc để không khí ngày cưới thêm phần lãng mạn. Bạn có thể bật / tắt nhạc tùy ý.
+        </p>
+        <div class="music-card-controls">
+          <button class="btn btn-primary" id="toggle-music">Phát nhạc</button>
+          <span id="music-status" style="font-size: 0.85rem; color: #777;">Nhạc đang tắt.</span>
+          <audio id="audio-inline" controls loop style="flex: 1; min-width: 180px;">
+            <!-- Player nhạc có điều khiển - dùng chung file nhạc nền -->
+            <source src="music/bg-music2222.mp3" type="audio/mpeg" />
+            Trình duyệt của bạn không hỗ trợ audio.
+          </audio>
+        </div>
+        <p class="note">
+          Nhạc nền phía trên được phát tự động sau khi bạn bấm “Mở thiệp” (nếu trình duyệt cho phép).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WISHES & RSVP -->
+  <section id="wishes" class="fade-section">
+    <div class="section-inner">
+      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Gửi lời chúc</h2>
+      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">LƯU GIỮ KHOẢNH KHẮC</div>
+      <div class="card animate-on-scroll" data-animate="zoom-in" style="max-width: 600px; margin: 0 auto;">
+        <form id="wish-form">
+          <div class="form-group">
+            <label class="form-label" for="wish-name">Họ và tên</label>
+            <input id="wish-name" class="form-input" placeholder="Nhập tên của bạn" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wish-content">Lời chúc</label>
+            <textarea id="wish-content" class="form-textarea" placeholder="Gửi đôi lời chúc phúc đến cô dâu chú rể..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Gửi lời chúc</button>
+          <p class="note">
+            Lời chúc của bạn sẽ được gửi riêng cho cô dâu chú rể, những người khác sẽ không xem được danh sách lời chúc.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="rsvp" class="fade-section" style="background: rgba(255,255,255,0.7);">
+    <div class="section-inner">
+      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Xác nhận tham dự</h2>
+      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">RẤT MONG SỰ HIỆN DIỆN CỦA BẠN</div>
+      <div class="card animate-on-scroll" data-animate="zoom-in" style="max-width: 600px; margin: 0 auto;">
+        <form id="rsvp-form">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-name">Họ và tên</label>
+            <input id="rsvp-name" class="form-input" placeholder="Nhập tên của bạn" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rsvp-phone">Số điện thoại</label>
+            <input id="rsvp-phone" class="form-input" placeholder="Ví dụ: 0903..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rsvp-status">Trạng thái</label>
+            <select id="rsvp-status" class="form-select" required>
+              <option value="yes">Tham dự</option>
+              <option value="no">Xin phép vắng mặt</option>
+              <option value="maybe">Sẽ cân nhắc</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rsvp-note">Ghi chú thêm (nếu có)</label>
+            <textarea id="rsvp-note" class="form-textarea" placeholder="Ví dụ: đi cùng 2 người, ăn chay,..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Gửi xác nhận</button>
+          <p class="note">
+            Thông tin xác nhận sẽ chỉ được gửi riêng tới cô dâu chú rể, danh sách khách tham dự không hiển thị công khai.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Xin chân thành cảm ơn sự hiện diện và lời chúc phúc của quý khách.</div>
+    <div style="margin-top: 4px;">Thiệp cưới online • Nam &amp; Dung</div>
+  </footer>
+
+  <script>
+    // ===== CONSTANTS =====
+    const WEDDING_DATE = new Date("2025-12-13T11:30:00+07:00"); // đổi ngày cưới ở đây
+    const LS_WISHES_KEY = "wedding_wishes";
+    const LS_RSVP_KEY = "wedding_rsvp";
+    const HEARTS_ENABLED = true; // nếu muốn tắt trái tim rơi, set = false
+
+    // ===== SCROLL ANIMATION =====
+    const fadeSections = document.querySelectorAll(".fade-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+    fadeSections.forEach((sec) => observer.observe(sec));
+
+    // Nâng cấp animation cho các phần tử tùy chỉnh
+    const animatedEls = document.querySelectorAll(".animate-on-scroll");
+    const animateObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            animateObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+    animatedEls.forEach((el) => animateObserver.observe(el));
+
+    // ===== HEARTS FALLING =====
+    const heartsContainer = document.getElementById("hearts-container");
+
+    function createHeart() {
+      if (!HEARTS_ENABLED || !heartsContainer) return;
+
+      const heart = document.createElement("div");
+      heart.className = "heart";
+
+      // random vị trí ngang, kích thước, thời gian rơi, delay xoay nhẹ
+      const size = 8 + Math.random() * 10; // 8 - 18 px
+      const left = Math.random() * 100; // %
+      const duration = 5 + Math.random() * 5; // 5 - 10s
+      const delayHorizontal = Math.random() * 2;
+
+      heart.style.left = left + "vw";
+      heart.style.width = size + "px";
+      heart.style.height = size + "px";
+      heart.style.animationDuration = duration + "s";
+      heart.style.animationDelay = delayHorizontal + "s";
+
+      heartsContainer.appendChild(heart);
+
+      // Xóa node sau khi rơi xong để tránh đầy DOM
+      setTimeout(() => {
+        heart.remove();
+      }, (duration + delayHorizontal + 1) * 1000);
+    }
+
+    // Tạo tim đều đặn (giảm tần suất để bớt dày đặc)
+    setInterval(createHeart, 900);
+
+    // ===== COUNTDOWN =====
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = WEDDING_DATE.getTime() - now;
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      if (distance <= 0) {
+        daysEl.textContent = "0";
+        hoursEl.textContent = "0";
+        minutesEl.textContent = "0";
+        secondsEl.textContent = "0";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = seconds;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ===== MUSIC CONTROL =====
+    const bgMusic = document.getElementById("bg-music");
+    const audioInline = document.getElementById("audio-inline");
+    const toggleMusicBtn = document.getElementById("toggle-music");
+    const musicStatus = document.getElementById("music-status");
+    const openInvitationBtn = document.getElementById("open-invitation");
+
+    let isBgPlaying = false;
+
+    function setMusicStatus() {
+      if (isBgPlaying) {
+        musicStatus.textContent = "Nhạc nền đang phát.";
+        toggleMusicBtn.textContent = "Tạm dừng nhạc";
+      } else {
+        musicStatus.textContent = "Nhạc đang tắt.";
+        toggleMusicBtn.textContent = "Phát nhạc";
+      }
+    }
+
+    setMusicStatus();
+
+    openInvitationBtn.addEventListener("click", () => {
+      document.querySelector("#couple").scrollIntoView({ behavior: "smooth" });
+      bgMusic
+        .play()
+        .then(() => {
+          isBgPlaying = true;
+          setMusicStatus();
+        })
+        .catch(() => {
+          console.warn("Trình duyệt chặn tự phát nhạc.");
+        });
+    });
+
+    toggleMusicBtn.addEventListener("click", () => {
+      if (isBgPlaying) {
+        bgMusic.pause();
+        isBgPlaying = false;
+      } else {
+        bgMusic
+          .play()
+          .then(() => {
+            isBgPlaying = true;
+          })
+          .catch(() => {
+            alert("Trình duyệt đang chặn tự động phát nhạc, hãy thử bấm play trong khung audio.");
+          });
+      }
+      setMusicStatus();
+    });
+
+    audioInline.addEventListener("play", () => {
+      // Nếu người dùng play audio inline, có thể tạm dừng nhạc nền để tránh trùng.
+      if (!audioInline.paused) {
+        bgMusic.pause();
+        isBgPlaying = false;
+        setMusicStatus();
+      }
+    });
+
+    // ===== UTIL LOCALSTORAGE =====
+    function loadFromStorage(key) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return [];
+        return JSON.parse(raw);
+      } catch (e) {
+        console.error("Lỗi đọc localStorage", e);
+        return [];
+      }
+    }
+
+    function saveToStorage(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+      } catch (e) {
+        console.error("Lỗi ghi localStorage", e);
+      }
+    }
+
+    // ===== WISHES =====
+    const wishForm = document.getElementById("wish-form");
+
+    let wishes = loadFromStorage(LS_WISHES_KEY);
+
+    async function sendWishToServer(wish) {
+      try {
+        const res = await fetch("save_wish.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: wish.name,
+            content: wish.content,
+          }),
+        });
+        if (!res.ok) {
+          console.error("Lỗi gửi lời chúc lên server, status:", res.status);
+          return false;
+        }
+        const data = await res.json().catch(() => ({}));
+        if (!data.ok) {
+          console.error("Server trả về lỗi:", data.error);
+          return false;
+        }
+        return true;
+      } catch (err) {
+        console.error("Lỗi kết nối tới save_wish.php:", err);
+        return false;
+      }
+    }
+
+    wishForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("wish-name").value.trim();
+      const content = document.getElementById("wish-content").value.trim();
+      if (!content) return;
+      const newWish = {
+        name: name || "Ẩn danh",
+        content,
+        time: new Date().toISOString(),
+      };
+
+      // Lưu local để phòng trường hợp server lỗi
+      wishes.unshift(newWish);
+      saveToStorage(LS_WISHES_KEY, wishes);
+
+      // Gửi lên server ghi vào loichuc.log
+      const ok = await sendWishToServer(newWish);
+      if (!ok) {
+        alert("Đã nhận lời chúc của bạn trên trình duyệt, nhưng chưa ghi được lên máy chủ. Vui lòng báo cho chủ tiệc kiểm tra.");
+      } else {
+        alert("Cảm ơn bạn đã gửi lời chúc!");
+      }
+
+      wishForm.reset();
+    });
+
+    // ===== RSVP =====
+    const rsvpForm = document.getElementById("rsvp-form");
+
+    let rsvps = loadFromStorage(LS_RSVP_KEY);
+
+    async function sendRsvpToServer(rsvp) {
+      try {
+        const res = await fetch("save_rsvp.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: rsvp.name,
+            phone: rsvp.phone,
+            status: rsvp.status,
+            note: rsvp.note,
+          }),
+        });
+        if (!res.ok) {
+          console.error("Lỗi gửi RSVP lên server, status:", res.status);
+          return false;
+        }
+        const data = await res.json().catch(() => ({}));
+        if (!data.ok) {
+          console.error("Server trả về lỗi RSVP:", data.error);
+          return false;
+        }
+        return true;
+      } catch (err) {
+        console.error("Lỗi kết nối tới save_rsvp.php:", err);
+        return false;
+      }
+    }
+
+    rsvpForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("rsvp-name").value.trim();
+      const phone = document.getElementById("rsvp-phone").value.trim();
+      const status = document.getElementById("rsvp-status").value;
+      const note = document.getElementById("rsvp-note").value.trim();
+      const newRsvp = {
+        name: name || "Khách",
+        phone,
+        status,
+        note,
+        time: new Date().toISOString(),
+      };
+      rsvps.unshift(newRsvp);
+      saveToStorage(LS_RSVP_KEY, rsvps);
+
+      const ok = await sendRsvpToServer(newRsvp);
+      if (!ok) {
+        alert("Đã nhận xác nhận của bạn nhưng chưa ghi được lên máy chủ. Vui lòng báo cho chủ tiệc.");
+      } else {
+        alert("Cảm ơn bạn đã xác nhận tham dự!");
+      }
+
+      rsvpForm.reset();
+    });
+
+    // ===== HELPER: TẢI FILE TEXT =====
+    function downloadTextFile(filename, content) {
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // ===== HELPER: ESCAPE HTML =====
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
+
+
