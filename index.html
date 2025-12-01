@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Thiệp mời cưới • Nam & Dung</title>
+  <title>Thiệp mời cưới • Nga & Long</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Thiệp cưới online Long & Nga" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -13,6 +13,7 @@
       --bg: #fffaf5;
       --text: #3b3b3b;
       --accent: #f7d9c4;
+      --hero-bg: url("images/JNW05771.jpg");
     }
 
     * {
@@ -55,11 +56,13 @@
       content: "";
       position: absolute;
       inset: 0;
-      /* Ảnh nền hero - đang dùng JNW05977.jpg, bạn có thể đổi sang ảnh khác trong folder images */
-      background: url("images/JNW05771.jpg") center/cover no-repeat fixed;
-      transform: scale(1.1);
+      /* Ảnh nền hero - sẽ được slide show qua JS bằng biến --hero-bg */
+      background: var(--hero-bg) center/cover no-repeat fixed;
+      transform: scale(1.05);
       filter: brightness(0.6);
       z-index: -2;
+      opacity: 1;
+      transition: opacity 0.9s ease-in-out, transform 3s ease-out;
     }
 
     .hero::after {
@@ -68,6 +71,10 @@
       inset: 0;
       background: radial-gradient(circle at center, rgba(255,255,255,0.25), rgba(0,0,0,0.6));
       z-index: -1;
+    }
+
+    .hero.hero-fade::before {
+      opacity: 0;
     }
 
     .hero-inner {
@@ -265,10 +272,15 @@
 
     /* TIMELINE & COUNTDOWN */
     .timeline {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
+      display: flex;
+      justify-content: center;
       gap: 30px;
       align-items: flex-start;
+    }
+
+    .timeline .card {
+      max-width: 420px;
+      width: 100%;
     }
 
     .card {
@@ -388,16 +400,6 @@
       color: #fff;
     }
 
-    /* MUSIC */
-    .music-card-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -435,6 +437,64 @@
     .btn-outline:hover {
       background: var(--primary);
       color: #fff;
+    }
+
+    /* FLOATING MUSIC BUTTON */
+    .floating-music-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 20px;
+      z-index: 120;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      background: radial-gradient(circle at 30% 20%, #ffe7c8, var(--primary-dark));
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .floating-music-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+    }
+
+    .floating-music-toggle::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: inherit;
+      border: 2px solid rgba(199,154,101,0.35);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .floating-music-toggle.is-playing::before {
+      opacity: 1;
+      transform: scale(1.05);
+      animation: music-pulse 1.6s ease-out infinite;
+    }
+
+    @keyframes music-pulse {
+      0% {
+        opacity: 0.7;
+        transform: scale(0.9);
+      }
+      70% {
+        opacity: 0;
+        transform: scale(1.25);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.35);
+      }
     }
 
     /* LỜI CHÚC & RSVP */
@@ -669,15 +729,38 @@
         gap: 6px;
       }
 
-      .couple,
-      .timeline,
+      .couple {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        flex-direction: column;
+        align-items: center;
+      }
+
       .qr-wrapper,
       .grid-2 {
         grid-template-columns: 1fr;
       }
 
+      .timeline .card {
+        max-width: 340px;
+      }
+
       .countdown-numbers {
         gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .animate-on-scroll {
+        transform: var(--animate-from-mobile, var(--animate-from, translate3d(0, 24px, 0)));
+        transition-duration: 0.7s;
+      }
+
+      [data-animate="slide-left"],
+      [data-animate="slide-right"],
+      [data-animate="float"] {
+        --animate-from-mobile: translate3d(0, 24px, 0);
       }
     }
   </style>
@@ -697,7 +780,7 @@
       <div class="hero-names">Duy Long &amp; Đỗ Nga</div>
       <div class="hero-divider"></div>
       <p>Trân trọng kính mời quý khách đến dự lễ cưới chung vui cùng gia đình chúng tôi.</p>
-      <div class="hero-date">Thứ 7, 13 / 12 / 2025 • Tỉnh Ninh Bình</div>
+      <div class="hero-date">❤ Thứ 7, 13 / 12 / 2025 ❤</div>
       <div style="margin-top: 24px;">
         <button class="btn btn-primary" id="open-invitation">Mở thiệp</button>
       </div>
@@ -741,7 +824,6 @@
           <div class="family-info">
             <strong>Con ông:</strong> Lê Duy Lành<br />
             <strong>Con bà:</strong> Mai Thị Liên<br />
-            Ngụ tại Xã Cổ Đô, TP Hà Nội.
           </div>
         </div>
 
@@ -755,7 +837,6 @@
           <div class="family-info">
             <strong>Con ông:</strong> Đỗ Văn Đông<br />
             <strong>Con bà:</strong> Trần Thi Loan<br />
-            Ngụ tại Xã Cát Thành, Tỉnh Ninh Bình.
           </div>
         </div>
       </div>
@@ -768,47 +849,6 @@
       <h2 class="section-title animate-on-scroll" data-animate="slide-down">Lịch trình ngày cưới</h2>
       <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">NGÀY VUI CỦA CHÚNG TÔI</div>
       <div class="timeline">
-        <div class="card animate-on-scroll" data-animate="slide-right">
-          <div class="card-title">Lịch trình chi tiết</div>
-          <ul class="timeline-list">
-            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.05s;">
-              <div class="timeline-time">06:30</div>
-              <div>
-                <div class="timeline-content-title">Đón khách</div>
-                <div class="timeline-content-desc">Đón khách tại nhà gái, giao lưu và chụp hình lưu niệm.</div>
-              </div>
-            </li>
-            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.1s;">
-              <div class="timeline-time">07:00</div>
-              <div>
-                <div class="timeline-content-title">Lễ rước dâu</div>
-                <div class="timeline-content-desc">Nhà trai sang nhà gái, thực hiện nghi thức rước dâu.</div>
-              </div>
-            </li>
-            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.15s;">
-              <div class="timeline-time">11:00</div>
-              <div>
-                <div class="timeline-content-title">Nhập tiệc</div>
-                <div class="timeline-content-desc">Quý khách ổn định chỗ ngồi, bắt đầu bữa tiệc thân mật.</div>
-              </div>
-            </li>
-            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.2s;">
-              <div class="timeline-time">12:00</div>
-              <div>
-                <div class="timeline-content-title">Lễ thành hôn</div>
-                <div class="timeline-content-desc">Nghi lễ chính thức, ra mắt hai họ và bạn bè.</div>
-              </div>
-            </li>
-            <li class="timeline-item animate-on-scroll" data-animate="slide-right" style="--delay: 0.25s;">
-              <div class="timeline-time">14:00</div>
-              <div>
-                <div class="timeline-content-title">Kết thúc tiệc</div>
-                <div class="timeline-content-desc">Gửi lời cảm ơn đến toàn thể quan khách.</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
         <div class="card animate-on-scroll" data-animate="slide-left">
           <div class="card-title">Đếm ngược đến ngày cưới</div>
           <div class="countdown">
@@ -848,16 +888,16 @@
       </p>
       <div class="grid-2" style="gap: 20px;">
         <div class="card animate-on-scroll" data-animate="zoom-in">
-          <div class="card-title">Lễ cưới nhà gái</div>
+          <div class="card-title">Tiệc cưới nhà gái</div>
           <p class="timeline-content-desc" style="margin-bottom: 8px;">
-            <strong>7:30 • 13/12/2025</strong>
+            <strong>17:30 • 12/12/2025</strong>
           </p>
           <p class="timeline-content-desc">
             Tư gia nhà gái &ndash; Thôn Bắc Đại 1, Xã Cát Thành, Tỉnh Ninh Bình.
           </p>
         </div>
         <div class="card animate-on-scroll" data-animate="zoom-in" style="--delay: 0.05s;">
-          <div class="card-title">Tiệc cưới nhà gái</div>
+          <div class="card-title">Lễ Vu Quy</div>
           <p class="timeline-content-desc" style="margin-bottom: 8px;">
             <strong>08:30 • 13/12/2025</strong>
           </p>
@@ -866,16 +906,16 @@
           </p>
         </div>
         <div class="card animate-on-scroll" data-animate="zoom-in" style="--delay: 0.1s;">
-          <div class="card-title">Lễ cưới nhà trai</div>
+          <div class="card-title">Tiệc cưới nhà trai</div>
           <p class="timeline-content-desc" style="margin-bottom: 8px;">
-            <strong>12:00 • 13/12/2025</strong>
+            <strong>16:00 • 12/12/2025</strong>
           </p>
           <p class="timeline-content-desc">
             Tư gia nhà trai &ndash; Thôn Phương Châu, Xã Cổ Đô, TP Hà Nội.
           </p>
         </div>
         <div class="card animate-on-scroll" data-animate="zoom-in" style="--delay: 0.15s;">
-          <div class="card-title">Tiệc cưới nhà trai</div>
+          <div class="card-title">Lễ Thành Hôn</div>
           <p class="timeline-content-desc" style="margin-bottom: 8px;">
             <strong>12:30 • 13/12/2025</strong>
           </p>
@@ -887,31 +927,6 @@
     </div>
   </section>
 
-
-  <!-- MUSIC -->
-  <section id="music" class="fade-section" style="background: rgba(255,255,255,0.7);">
-    <div class="section-inner">
-      <h2 class="section-title animate-on-scroll" data-animate="slide-down">Bản nhạc cưới</h2>
-      <div class="section-subtitle animate-on-scroll" data-animate="slide-up" style="--delay: 0.05s;">GIA ĐIỆU TÌNH YÊU</div>
-      <div class="card animate-on-scroll" data-animate="flip-up">
-        <p>
-          Một chút âm nhạc để không khí ngày cưới thêm phần lãng mạn. Bạn có thể bật / tắt nhạc tùy ý.
-        </p>
-        <div class="music-card-controls">
-          <button class="btn btn-primary" id="toggle-music">Phát nhạc</button>
-          <span id="music-status" style="font-size: 0.85rem; color: #777;">Nhạc đang tắt.</span>
-          <audio id="audio-inline" controls loop style="flex: 1; min-width: 180px;">
-            <!-- Player nhạc có điều khiển - dùng chung file nhạc nền -->
-            <source src="music/bg-music2222.mp3" type="audio/mpeg" />
-            Trình duyệt của bạn không hỗ trợ audio.
-          </audio>
-        </div>
-        <p class="note">
-          Nhạc nền phía trên được phát tự động sau khi bạn bấm “Mở thiệp” (nếu trình duyệt cho phép).
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- WISHES & RSVP -->
   <section id="wishes" class="fade-section">
@@ -977,12 +992,22 @@
     <div style="margin-top: 4px;">Thiệp cưới online • Nam &amp; Dung</div>
   </footer>
 
+  <!-- FLOATING MUSIC TOGGLE -->
+  <button id="floating-music-toggle" class="floating-music-toggle" aria-label="Tắt/Bật nhạc">
+    ♫
+  </button>
+
   <script>
     // ===== CONSTANTS =====
     const WEDDING_DATE = new Date("2025-12-13T11:30:00+07:00"); // đổi ngày cưới ở đây
     const LS_WISHES_KEY = "wedding_wishes";
     const LS_RSVP_KEY = "wedding_rsvp";
     const HEARTS_ENABLED = true; // nếu muốn tắt trái tim rơi, set = false
+    const HERO_IMAGES = [
+      "images/JNW05771.jpg",
+      "images/JNW05559.jpg",
+      "images/JNW05950.jpg",
+    ];
 
     // ===== SCROLL ANIMATION =====
     const fadeSections = document.querySelectorAll(".fade-section");
@@ -1017,6 +1042,33 @@
       }
     );
     animatedEls.forEach((el) => animateObserver.observe(el));
+
+    // ===== HERO SLIDESHOW =====
+    let heroImageIndex = 0;
+
+    function rotateHeroBackground() {
+      if (!HERO_IMAGES || HERO_IMAGES.length === 0) return;
+
+      const heroEl = document.querySelector(".hero");
+      if (!heroEl) return;
+
+      // Fade out ảnh hiện tại
+      heroEl.classList.add("hero-fade");
+
+      setTimeout(() => {
+        heroImageIndex = (heroImageIndex + 1) % HERO_IMAGES.length;
+        const nextUrl = HERO_IMAGES[heroImageIndex];
+        document.documentElement.style.setProperty("--hero-bg", `url("${nextUrl}")`);
+
+        // Fade in ảnh mới
+        heroEl.classList.remove("hero-fade");
+      }, 600);
+    }
+
+    // Đổi ảnh banner mỗi 3 giây
+    if (HERO_IMAGES.length > 1) {
+      setInterval(rotateHeroBackground, 3000);
+    }
 
     // ===== HEARTS FALLING =====
     const heartsContainer = document.getElementById("hearts-container");
@@ -1083,20 +1135,20 @@
 
     // ===== MUSIC CONTROL =====
     const bgMusic = document.getElementById("bg-music");
-    const audioInline = document.getElementById("audio-inline");
-    const toggleMusicBtn = document.getElementById("toggle-music");
-    const musicStatus = document.getElementById("music-status");
+    const floatingMusicBtn = document.getElementById("floating-music-toggle");
     const openInvitationBtn = document.getElementById("open-invitation");
 
     let isBgPlaying = false;
 
     function setMusicStatus() {
       if (isBgPlaying) {
-        musicStatus.textContent = "Nhạc nền đang phát.";
-        toggleMusicBtn.textContent = "Tạm dừng nhạc";
+        floatingMusicBtn.textContent = "🔊";
+        floatingMusicBtn.setAttribute("aria-label", "Tắt nhạc");
+        floatingMusicBtn.classList.add("is-playing");
       } else {
-        musicStatus.textContent = "Nhạc đang tắt.";
-        toggleMusicBtn.textContent = "Phát nhạc";
+        floatingMusicBtn.textContent = "🔇";
+        floatingMusicBtn.setAttribute("aria-label", "Bật nhạc");
+        floatingMusicBtn.classList.remove("is-playing");
       }
     }
 
@@ -1115,7 +1167,20 @@
         });
     });
 
-    toggleMusicBtn.addEventListener("click", () => {
+    // Tự động phát nhạc khi trang tải xong (nếu trình duyệt cho phép)
+    window.addEventListener("load", () => {
+      bgMusic
+        .play()
+        .then(() => {
+          isBgPlaying = true;
+          setMusicStatus();
+        })
+        .catch(() => {
+          console.warn("Trình duyệt chặn tự phát nhạc khi load trang.");
+        });
+    });
+
+    floatingMusicBtn.addEventListener("click", () => {
       if (isBgPlaying) {
         bgMusic.pause();
         isBgPlaying = false;
