@@ -989,7 +989,7 @@
 
   <footer>
     <div>Xin chân thành cảm ơn sự hiện diện và lời chúc phúc của quý khách.</div>
-    <div style="margin-top: 4px;">Thiệp cưới online • Nam &amp; Dung</div>
+    <div style="margin-top: 4px;">Thiệp cưới online • Nga &amp; Long</div>
   </footer>
 
   <!-- FLOATING MUSIC TOGGLE -->
@@ -1197,15 +1197,6 @@
       setMusicStatus();
     });
 
-    audioInline.addEventListener("play", () => {
-      // Nếu người dùng play audio inline, có thể tạm dừng nhạc nền để tránh trùng.
-      if (!audioInline.paused) {
-        bgMusic.pause();
-        isBgPlaying = false;
-        setMusicStatus();
-      }
-    });
-
     // ===== UTIL LOCALSTORAGE =====
     function loadFromStorage(key) {
       try {
@@ -1305,12 +1296,14 @@
           }),
         });
         if (!res.ok) {
-          console.error("Lỗi gửi RSVP lên server, status:", res.status);
+          const errorText = await res.text();
+          console.error("Lỗi gửi RSVP lên server, status:", res.status, "Response:", errorText);
           return false;
         }
         const data = await res.json().catch(() => ({}));
+        console.log("RSVP Response:", data);
         if (!data.ok) {
-          console.error("Server trả về lỗi RSVP:", data.error);
+          console.error("Server trả về lỗi RSVP:", data.error, data);
           return false;
         }
         return true;
