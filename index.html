@@ -1224,31 +1224,43 @@
 
     async function sendWishToServer(wish) {
       try {
-        const res = await fetch("save_wish.php", {
+        const res = await fetch("http://103.172.239.88/api/loichuc", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             name: wish.name,
-            content: wish.content,
-          }),
+            content: wish.content
+          })
         });
+
         if (!res.ok) {
           console.error("Lỗi gửi lời chúc lên server, status:", res.status);
+          const text = await res.text(); // xem lỗi trả về từ server
+          console.error("Response:", text);
           return false;
         }
-        const data = await res.json().catch(() => ({}));
-        if (!data.ok) {
+
+        // Nếu API không trả json thì đoạn này sẽ không làm crash
+        let data = {};
+        try {
+          data = await res.json();
+        } catch (e) {}
+
+        // Nếu API của bạn không trả field ok thì có thể bỏ đoạn này
+        if (data.ok === false) {
           console.error("Server trả về lỗi:", data.error);
           return false;
         }
+
         return true;
       } catch (err) {
-        console.error("Lỗi kết nối tới save_wish.php:", err);
+        console.error("Lỗi kết nối tới API:", err);
         return false;
       }
     }
+
 
     wishForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -1283,32 +1295,42 @@
 
     async function sendRsvpToServer(rsvp) {
       try {
-        const res = await fetch("save_rsvp.php", {
+        const res = await fetch("http://103.172.239.88/api/rsvp", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             name: rsvp.name,
             phone: rsvp.phone,
             status: rsvp.status,
-            note: rsvp.note,
-          }),
+            note: rsvp.note
+          })
         });
+
         if (!res.ok) {
           const errorText = await res.text();
           console.error("Lỗi gửi RSVP lên server, status:", res.status, "Response:", errorText);
           return false;
         }
-        const data = await res.json().catch(() => ({}));
-        console.log("RSVP Response:", data);
-        if (!data.ok) {
+
+        // Nếu API không trả JSON hợp lệ thì cũng không crash
+        let data = {};
+        try {
+          data = await res.json();
+        } catch (e) {}
+
+        // Nếu API của bạn có trả { ok: false } thì bắt lỗi
+        if (data.ok === false) {
           console.error("Server trả về lỗi RSVP:", data.error, data);
           return false;
         }
+
+        console.log("RSVP Response:", data);
         return true;
+
       } catch (err) {
-        console.error("Lỗi kết nối tới save_rsvp.php:", err);
+        console.error("Lỗi kết nối tới API /rsvp:", err);
         return false;
       }
     }
